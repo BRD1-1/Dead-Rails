@@ -37,60 +37,45 @@ local Window = Rayfield:CreateWindow({
 local MainTab = Window:CreateTab("Main", nil)
 local ESPSection = MainTab:CreateSection("ESP")
 
-local Toggle = Tab:CreateToggle({
-   Name = "Mob ESP",
-   CurrentValue = false,
-   Flag = "Toggle1",
-   Callback = function(Value)
-       Toggle.CurrentValue = Value
-       
-       if Value then
-           spawn(function()
-               while Toggle.CurrentValue do
-                   for _, object in pairs(game.Workspace:GetDescendants()) do
-                       if object.Name == "Walker" or object.Name == "Runner" then
-                           if not object:FindFirstChild("ESPSelectionBox") then
-                               local selectionBox = Instance.new("SelectionBox")
-                               selectionBox.Name = "ESPSelectionBox"
-                               selectionBox.Parent = object
-                               selectionBox.Adornee = object
-                               selectionBox.Color3 = Color3.fromRGB(255, 0, 0)
-                               selectionBox.LineThickness = 0.05
-                               selectionBox.Transparency = 0.5
-                           end
+local Button = MainTab:CreateButton({ 
+   Name = "Mob ESP", 
+   Callback = function()
+      task.spawn(function()
+         while true do
+            for _, object in pairs(game.Workspace:GetDescendants()) do
+               if object.Name == "Walker" or object.Name == "Runner" then
+                  if not object:FindFirstChild("ESPSelectionBox") then
+                     local selectionBox = Instance.new("SelectionBox")
+                     selectionBox.Name = "ESPSelectionBox"
+                     selectionBox.Parent = object
+                     selectionBox.Adornee = object
+                     selectionBox.Color3 = Color3.fromRGB(255, 0, 0)
+                     selectionBox.LineThickness = 0.05
+                     selectionBox.Transparency = 0.5
+                  end
 
-                           if not object:FindFirstChild("ESPGui") then
-                               local billboardGui = Instance.new("BillboardGui")
-                               billboardGui.Name = "ESPGui"
-                               billboardGui.Parent = object
-                               billboardGui.Adornee = object
-                               billboardGui.Size = UDim2.new(0, 100, 0, 50)
-                               billboardGui.StudsOffset = Vector3.new(0, 5, 0)
-                               billboardGui.AlwaysOnTop = true
+                  if not object:FindFirstChild("ESPGui") then
+                     local billboardGui = Instance.new("BillboardGui")
+                     billboardGui.Name = "ESPGui"
+                     billboardGui.Parent = object
+                     billboardGui.Adornee = object
+                     billboardGui.Size = UDim2.new(0, 100, 0, 50)
+                     billboardGui.StudsOffset = Vector3.new(0, 5, 0)
+                     billboardGui.AlwaysOnTop = true
 
-                               local textLabel = Instance.new("TextLabel")
-                               textLabel.Parent = billboardGui
-                               textLabel.Size = UDim2.new(1, 0, 1, 0)
-                               textLabel.Text = object.Name
-                               textLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
-                               textLabel.BackgroundTransparency = 1
-                               textLabel.TextScaled = true
-                               textLabel.TextSize = 14
-                           end
-                       end
-                   end
-                   wait(0.1)
+                     local textLabel = Instance.new("TextLabel")
+                     textLabel.Parent = billboardGui
+                     textLabel.Size = UDim2.new(1, 0, 1, 0)
+                     textLabel.Text = object.Name
+                     textLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+                     textLabel.BackgroundTransparency = 1
+                     textLabel.TextScaled = true
+                     textLabel.TextSize = 14
+                  end
                end
-           end)
-       else
-           for _, object in pairs(game.Workspace:GetDescendants()) do
-               if object:FindFirstChild("ESPSelectionBox") then
-                   object.ESPSelectionBox:Destroy()
-               end
-               if object:FindFirstChild("ESPGui") then
-                   object.ESPGui:Destroy()
-               end
-           end
-       end
+            end
+            wait(0.1)
+         end
+      end)
    end,
 })
