@@ -43,7 +43,10 @@ local Button = MainTab:CreateButton({
       task.spawn(function()
          while true do
             for _, object in pairs(game.Workspace:GetDescendants()) do
-               if object.Name == "Walker" or object.Name == "Runner" then
+               if object.Name == "Walker" or object.Name == "Runner" or object.Name == "Wolf" or object.Name == "Horse" or 
+                  object.Name == "Outlaw" or object.Name == "Werewolf" or object.Name == "Unicorn" or 
+                  object.Name == "Banker" or object.Name == "Captain Prescott" or object.Name == "Vampire" then
+                  
                   if not object:FindFirstChild("ESPSelectionBox") then
                      local selectionBox = Instance.new("SelectionBox")
                      selectionBox.Name = "ESPSelectionBox"
