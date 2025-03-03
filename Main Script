@@ -38,7 +38,7 @@ local MainTab = Window:CreateTab("Main", nil)
 local ESPSection = MainTab:CreateSection("ESP")
 
 local Toggle = MainTab:CreateToggle({ 
-   Name = "ESP", 
+   Name = "Mob ESP", 
    CurrentValue = false,
    Flag = "Toggle1", 
    Callback = function(Value)
