@@ -71,9 +71,10 @@ local Toggle = MainTab:CreateToggle({
                            textLabel.TextSize = 14
                        end
                    end
-                   wait(2.5)
+                   wait(0.1)  -- Change to 0.1 to update every 0.1 seconds
                end
            end)
        end
    end,
 })
+
