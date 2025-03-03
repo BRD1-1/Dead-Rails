@@ -1,11 +1,11 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Rayfield Example Window",
-   Icon = 0,
+   Name = "Dead Rails",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "Dead Rails",
-   LoadingSubtitle = "by B1RD, Pecan Pie",
-   Theme = "Default", 
+   LoadingSubtitle = "by B1rd & Pecan Pie",
+   Theme = "Default",
 
    DisableRayfieldPrompts = false,
    DisableBuildWarnings = false,
@@ -35,7 +35,6 @@ local Window = Rayfield:CreateWindow({
 })
 
 local MainTab = Window:CreateTab("Main", nil)
-
 local ESPSection = MainTab:CreateSection("ESP")
 
 local Toggle = MainTab:CreateToggle({ 
