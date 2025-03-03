@@ -37,11 +37,12 @@ local Window = Rayfield:CreateWindow({
 local MainTab = Window:CreateTab("Main", nil)
 local ESPSection = MainTab:CreateSection("ESP")
 
-local Toggle = MainTab:CreateToggle({ 
-   Name = "Mob ESP", 
+local Toggle = Tab:CreateToggle({
+   Name = "Mob ESP",
    CurrentValue = false,
-   Flag = "Toggle1", 
+   Flag = "MobESPTog",
    Callback = function(Value)
+       Toggle.CurrentValue = Value 
        if Value then
            spawn(function()
                while Toggle.CurrentValue do
@@ -92,5 +93,3 @@ local Toggle = MainTab:CreateToggle({
        end
    end,
 })
-
-
