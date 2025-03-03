@@ -12,7 +12,7 @@ local Window = Rayfield:CreateWindow({
 
    ConfigurationSaving = {
       Enabled = true,
-      FolderName = nil
+      FolderName = nil,
       FileName = "Big Hub"
    },
 
@@ -34,9 +34,7 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
-
-local MainTab = Window:CreateTab("Main", nil) -- Title, Image
-
+local MainTab = Window:CreateTab("Main", nil)
 
 local ESPSection = MainTab:CreateSection("ESP")
 
@@ -46,35 +44,37 @@ local Toggle = MainTab:CreateToggle({
    Flag = "Toggle1", 
    Callback = function(Value)
        if Value then
-           while true do
-               for _, object in pairs(game.Workspace:GetDescendants()) do
-                   if object.Name == "Walker" or object.Name == "Runner" then
-                       local selectionBox = Instance.new("SelectionBox")
-                       selectionBox.Parent = object
-                       selectionBox.Adornee = object
-                       selectionBox.Color3 = Color3.fromRGB(255, 0, 0)
-                       selectionBox.LineThickness = 0.05
-                       selectionBox.Transparency = 0.5
-                       
-                       local billboardGui = Instance.new("BillboardGui")
-                       billboardGui.Parent = object
-                       billboardGui.Adornee = object
-                       billboardGui.Size = UDim2.new(0, 100, 0, 50)
-                       billboardGui.StudsOffset = Vector3.new(0, 5, 0)
-                       billboardGui.AlwaysOnTop = true
+           spawn(function()
+               while Toggle.CurrentValue do
+                   for _, object in pairs(game.Workspace:GetDescendants()) do
+                       if object.Name == "Walker" or object.Name == "Runner" then
+                           local selectionBox = Instance.new("SelectionBox")
+                           selectionBox.Parent = object
+                           selectionBox.Adornee = object
+                           selectionBox.Color3 = Color3.fromRGB(255, 0, 0)
+                           selectionBox.LineThickness = 0.05
+                           selectionBox.Transparency = 0.5
+                           
+                           local billboardGui = Instance.new("BillboardGui")
+                           billboardGui.Parent = object
+                           billboardGui.Adornee = object
+                           billboardGui.Size = UDim2.new(0, 100, 0, 50)
+                           billboardGui.StudsOffset = Vector3.new(0, 5, 0)
+                           billboardGui.AlwaysOnTop = true
 
-                       local textLabel = Instance.new("TextLabel")
-                       textLabel.Parent = billboardGui
-                       textLabel.Size = UDim2.new(1, 0, 1, 0)
-                       textLabel.Text = object.Name
-                       textLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
-                       textLabel.BackgroundTransparency = 1
-                       textLabel.TextScaled = true
-                       textLabel.TextSize = 14
+                           local textLabel = Instance.new("TextLabel")
+                           textLabel.Parent = billboardGui
+                           textLabel.Size = UDim2.new(1, 0, 1, 0)
+                           textLabel.Text = object.Name
+                           textLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+                           textLabel.BackgroundTransparency = 1
+                           textLabel.TextScaled = true
+                           textLabel.TextSize = 14
+                       end
                    end
+                   wait(2.5)
                end
-               wait(2.5)
-           end
+           end)
        end
    end,
 })
